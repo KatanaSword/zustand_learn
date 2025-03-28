@@ -1,4 +1,4 @@
-import create from "zustand";
+import { create } from "zustand";
 
 import { devtools, persist } from "zustand/middleware";
 
@@ -14,12 +14,10 @@ const courseStore = (set) => ({
       courses: state.courses.filter((c) => c.id !== courseId),
     }));
   },
-  toggleCourse: (courseId) => {
+  toggleCourseStatus: (courseId) => {
     set((state) => ({
       courses: state.courses.map((c) =>
-        c.id === courseId
-          ? { ...courseId, completed: !courseId.completed }
-          : courseId
+        c.id === courseId ? { ...c, completed: !c.completed } : c
       ),
     }));
   },
